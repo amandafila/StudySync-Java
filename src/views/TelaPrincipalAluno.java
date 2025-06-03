@@ -35,7 +35,7 @@ public class TelaPrincipalAluno {
 
         btnVerPublicacoes.setOnAction(e -> {
             stage.close();
-           // new TelaVisualizarPublicacoes(aluno).start(new Stage()); // (Precisa implementar essa tela)
+            new TelaVisualizarPublicacoesAluno(aluno).start(new Stage()); // (Precisa implementar essa tela)
         });
 
         btnSair.setOnAction(e -> {
