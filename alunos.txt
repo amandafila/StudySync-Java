@@ -1,0 +1,2 @@
+0;oi;carlos@gmail;carlos;12345;12345;PUCPR
+2;Arthur;arthur@gmail;arthur;12345;12345;PUCPR
