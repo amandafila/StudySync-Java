@@ -30,7 +30,7 @@ public class TelaPrincipalAluno {
 
         btnVerVagas.setOnAction(e -> {
             stage.close();
-           // new TelaVisualizarVagasAluno(aluno).start(new Stage()); // (Precisa implementar essa tela)
+           new TelaVisualizarVagasAluno(aluno).start(new Stage()); // (Precisa implementar essa tela)
         });
 
         btnVerPublicacoes.setOnAction(e -> {
