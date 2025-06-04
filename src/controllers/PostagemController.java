@@ -21,7 +21,7 @@ public class PostagemController {
                     postagem.getFaculdadeNome();
 
             if (postagem.getTipo().equals("Vaga")) {
-                linha += ";" + ((models.Vaga) postagem).getLink();
+                linha += ";" + ((Vaga) postagem).getLink();
             }
 
             writer.write(linha + "\n");
@@ -30,13 +30,10 @@ public class PostagemController {
         }
     }
 
-    // No PostagemController:
     public static void removerPostagem(Postagem postagem) {
         try {
-            // Lê todas as linhas do arquivo
             List<String> linhas = Files.readAllLines(Paths.get("postagens.txt"));
 
-            // Filtra a linha correspondente à postagem a ser removida
             List<String> novasLinhas = linhas.stream()
                     .filter(linha -> {
                         String[] partes = linha.split(";");
@@ -47,7 +44,6 @@ public class PostagemController {
                     })
                     .collect(Collectors.toList());
 
-            // Reescreve o arquivo sem a linha removida
             Files.write(Paths.get("postagens.txt"), novasLinhas);
 
         } catch (IOException e) {
@@ -55,7 +51,6 @@ public class PostagemController {
         }
     }
 
-    // Método para carregar todas as postagens do arquivo
     public static List<Postagem> carregarPostagens() {
         List<Postagem> postagens = new ArrayList<>();
         try {
@@ -67,7 +62,7 @@ public class PostagemController {
                 String conteudo = partes[2];
                 String faculdadeNome = partes[3];
 
-                if (tipo.equals("Vaga")) {
+                if (tipo.equals("Vaga") && partes.length > 4) {
                     String link = partes[4];
                     postagens.add(new Vaga(titulo, conteudo, faculdadeNome, link));
                 } else {
@@ -78,5 +73,34 @@ public class PostagemController {
             System.out.println("Erro ao carregar postagens: " + e.getMessage());
         }
         return postagens;
+    }
+
+    public static void atualizarPostagem(Postagem postagemAtualizada) {
+        try {
+            // Carrega todas as postagens
+            List<Postagem> postagens = carregarPostagens();
+
+            // Encontra a postagem para atualizar
+            for (int i = 0; i < postagens.size(); i++) {
+                Postagem p = postagens.get(i);
+                if (p.getTitulo().equals(postagemAtualizada.getTitulo()) &&
+                        p.getFaculdadeNome().equals(postagemAtualizada.getFaculdadeNome())) {
+
+                    // Substitui pela versão atualizada
+                    postagens.set(i, postagemAtualizada);
+                    break;
+                }
+            }
+
+            // Reescreve o arquivo completo
+            Files.write(Paths.get("postagens.txt"), new ArrayList<>()); // Limpa o arquivo
+
+            for (Postagem p : postagens) {
+                salvarPostagem(p); // Reescreve cada postagem
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao atualizar postagem: " + e.getMessage());
+        }
     }
 }
