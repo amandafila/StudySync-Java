@@ -2,6 +2,7 @@ package views;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -18,8 +19,19 @@ public class TelaEscolhaTipo extends Application {
         primaryStage.setTitle("Escolha o Tipo de Cadastro");
         //título da janela
 
+
         Button btnAluno = new Button("Aluno");
+        btnAluno.setStyle("-fx-background-color: #006494;" +
+                "-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;" +
+                "-fx-background-radius: 10;"
+        );
         Button btnFaculdade = new Button("Faculdade");
+        btnFaculdade.setStyle("-fx-background-color: #006494;" +
+                "-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;" +
+                "-fx-background-radius: 10;"
+        );
         //cria botões com seus respectivos textos
 
         btnAluno.setMaxWidth(Double.MAX_VALUE);
@@ -43,6 +55,8 @@ public class TelaEscolhaTipo extends Application {
 
 
         VBox layout = new VBox(10);
+        layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #13293D;");
         //organiza os botões na vertical
         // 10 pixels de espaçamento entre cada botão
 

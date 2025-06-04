@@ -2,6 +2,7 @@ package views;
 
 import controllers.AlunoController;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -24,6 +25,8 @@ public class TelaPrincipalAluno {
                         "Email: " + aluno.getEmail() + "\n" +
                         "Faculdade: " + aluno.getNomeFaculdade()
         );
+        lblInfo.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
 
         Button btnVerVagas = new Button("Ver Vagas Disponíveis");
         Button btnVerPublicacoes = new Button("Ver Publicações");
@@ -60,10 +63,13 @@ public class TelaPrincipalAluno {
 
             grid.add(new Label("Nome:"), 0, 0);
             grid.add(nomeField, 1, 0);
+
             grid.add(new Label("Email:"), 0, 1);
             grid.add(emailField, 1, 1);
+
             grid.add(new Label("Usuário:"), 0, 2);
             grid.add(usernameField, 1, 2);
+
 
             dialog.getDialogPane().setContent(grid);
 
@@ -155,7 +161,8 @@ public class TelaPrincipalAluno {
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
         layout.getChildren().addAll(lblInfo, btnVerVagas, btnVerPublicacoes, btnEditar, btnMudarSenha, btnSair);
-
+        layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #13293D;");
         Scene scene = new Scene(layout, 400, 350); // Aumentei a altura para acomodar o novo botão
         stage.setScene(scene);
         stage.show();

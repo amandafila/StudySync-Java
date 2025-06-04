@@ -4,6 +4,7 @@ package views;
 
 import controllers.CadastroController;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -16,33 +17,92 @@ public class TelaCadastroFaculdade {
         stage.setTitle("Cadastro de Faculdade");
 
         GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setStyle("-fx-background-color: #13293D;");
         grid.setPadding(new Insets(20));
         grid.setHgap(10);
         grid.setVgap(10);
 
         Label lblNome = new Label("Nome:");
+        lblNome.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         TextField txtNome = new TextField();
+        txtNome.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Label lblEmail = new Label("Email:");
+        lblEmail.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         TextField txtEmail = new TextField();
+        txtEmail.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Label lblUser = new Label("Username:");
+        lblUser.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         TextField txtUser = new TextField();
+        txtUser.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Label lblSenha = new Label("Senha:");
+        lblSenha.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         PasswordField txtSenha = new PasswordField();
+        txtSenha.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Label lblCnpj = new Label("CNPJ:");
+        lblCnpj.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         TextField txtCnpj = new TextField();
+        txtCnpj.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Label lblCep = new Label("CEP:");
+        lblCep.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         TextField txtCep = new TextField();
+        txtCep.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Label lblTelefone = new Label("Telefone:");
+        lblTelefone.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
         TextField txtTelefone = new TextField();
+        txtTelefone.setStyle(
+                "-fx-text-fill: white;" +               // cor da letra
+                        "-fx-background-color: #006494;"        // cor de fundo
+        );
 
         Button btnCadastrar = new Button("Cadastrar");
+        btnCadastrar.setStyle("-fx-background-color: #006494;" +
+                "-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;" +
+                "-fx-background-radius: 10;"
+
+        );
+        btnCadastrar.setPrefWidth(200);
+
         Button btnLogin = new Button("Login");
+        btnLogin.setStyle("-fx-background-color: #006494;" +
+                "-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;" +
+                "-fx-background-radius: 10;"
+
+        );
+        btnLogin.setPrefWidth(200);
 
 
         grid.add(lblNome, 0, 0);
