@@ -60,4 +60,11 @@ public class AlunoController {
         alunos.removeIf(a -> a.getIdUsuario() == aluno.getIdUsuario());
         salvarTodosAlunos(alunos); // Salva a lista atualizada
     }
+    // No AlunoController.java
+    public static void removerAlunosDaFaculdade(String nomeFaculdade) {
+        List<Aluno> alunos = carregarAlunos();
+        // Remove todos os alunos da faculdade especificada
+        alunos.removeIf(a -> a.getNomeFaculdade().equals(nomeFaculdade));
+        salvarTodosAlunos(alunos);
+    }
 }

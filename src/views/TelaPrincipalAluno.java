@@ -31,8 +31,38 @@ public class TelaPrincipalAluno {
         Button btnVerVagas = new Button("Ver Vagas Disponíveis");
         Button btnVerPublicacoes = new Button("Ver Publicações");
         Button btnEditar = new Button("Editar Informações");
-        Button btnMudarSenha = new Button("Mudar Senha"); // Novo botão
+        Button btnMudarSenha = new Button("Mudar Senha");
+        Button btnDeletar = new Button("Deletar-me"); // Novo botão
         Button btnSair = new Button("Sair");
+
+        // Configuração do botão Deletar-me
+        btnDeletar.setStyle("-fx-background-color: #ff4444; -fx-text-fill: white;");
+        btnDeletar.setOnAction(e -> {
+            Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacao.setTitle("Confirmação de Exclusão");
+            confirmacao.setHeaderText("Tem certeza que deseja deletar sua conta?");
+            confirmacao.setContentText("Esta ação é irreversível e todos seus dados serão perdidos.");
+
+            confirmacao.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    // Remove o aluno do sistema
+                    AlunoController.removerAluno(aluno);
+
+                    // Fecha a janela atual
+                    stage.close();
+
+                    // Volta para a tela de login
+                    new TelaLogin("Aluno").start(new Stage());
+
+                    // Mostra mensagem de sucesso
+                    Alert sucesso = new Alert(Alert.AlertType.INFORMATION);
+                    sucesso.setTitle("Conta Deletada");
+                    sucesso.setHeaderText(null);
+                    sucesso.setContentText("Sua conta foi deletada com sucesso.");
+                    sucesso.showAndWait();
+                }
+            });
+        });
 
         btnVerVagas.setOnAction(e -> {
             stage.close();
@@ -70,7 +100,6 @@ public class TelaPrincipalAluno {
             grid.add(new Label("Usuário:"), 0, 2);
             grid.add(usernameField, 1, 2);
 
-
             dialog.getDialogPane().setContent(grid);
 
             dialog.setResultConverter(dialogButton -> {
@@ -94,7 +123,6 @@ public class TelaPrincipalAluno {
             });
         });
 
-        // Novo método para mudança de senha
         btnMudarSenha.setOnAction(e -> {
             Dialog<Boolean> dialog = new Dialog<>();
             dialog.setTitle("Mudar Senha");
@@ -123,25 +151,21 @@ public class TelaPrincipalAluno {
 
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == confirmarButtonType) {
-                    // Verifica se a senha atual está correta
                     if (!senhaAtualField.getText().equals(aluno.getSenha())) {
                         mostrarAlerta("Senha atual incorreta!");
                         return false;
                     }
 
-                    // Verifica se as novas senhas coincidem
                     if (!novaSenhaField.getText().equals(confirmarSenhaField.getText())) {
                         mostrarAlerta("As novas senhas não coincidem!");
                         return false;
                     }
 
-                    // Verifica se a nova senha é diferente da atual
                     if (novaSenhaField.getText().equals(senhaAtualField.getText())) {
                         mostrarAlerta("A nova senha deve ser diferente da atual!");
                         return false;
                     }
 
-                    // Atualiza a senha
                     aluno.setSenha(novaSenhaField.getText());
                     AlunoController.atualizarAluno(aluno);
                     mostrarAlerta("Senha alterada com sucesso!", Alert.AlertType.INFORMATION);
@@ -160,15 +184,14 @@ public class TelaPrincipalAluno {
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
-        layout.getChildren().addAll(lblInfo, btnVerVagas, btnVerPublicacoes, btnEditar, btnMudarSenha, btnSair);
+        layout.getChildren().addAll(lblInfo, btnVerVagas, btnVerPublicacoes, btnEditar, btnMudarSenha, btnDeletar, btnSair);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #13293D;");
-        Scene scene = new Scene(layout, 400, 350); // Aumentei a altura para acomodar o novo botão
+        Scene scene = new Scene(layout, 400, 400); // Aumentei a altura para acomodar o novo botão
         stage.setScene(scene);
         stage.show();
     }
 
-    // Método auxiliar para mostrar alertas
     private void mostrarAlerta(String mensagem) {
         mostrarAlerta(mensagem, Alert.AlertType.ERROR);
     }

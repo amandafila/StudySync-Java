@@ -1,7 +1,7 @@
 package views;
 
 import controllers.CadastroController;
-import controllers.LoginController; // Para carregar faculdades agora via LoginController
+import controllers.LoginController;
 import javafx.geometry.Insets;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -10,10 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Aluno;
-import models.Faculdade; // Importe Faculdade
+import models.Faculdade;
 
-import java.io.IOException; // Já não é tão direto para o .txt, mas pode manter para outras exceções.
-import java.util.List; // Importe List
+import java.util.List;
 
 public class TelaCadastroAluno {
 
@@ -23,22 +22,12 @@ public class TelaCadastroAluno {
         ComboBox<String> comboFaculdades = new ComboBox<>();
         comboFaculdades.setPromptText("Selecione a faculdade");
 
-        // Carrega os nomes das faculdades do arquivo .dat
         try {
-            // Usando LoginController para carregar as faculdades (reuso do método existente)
-            // Ou criar um método específico em CadastroController para carregar apenas as faculdades
-            List<Faculdade> faculdades = (List<Faculdade>) LoginController.autenticar("Faculdade", "", ""); // Truque para carregar todas as faculdades, não ideal.
-            // MELHOR: Adicionar um método `carregarTodasFaculdades()` em `CadastroController` ou `FaculdadeController`
-            // Por simplicidade para a refatoração, vamos adicionar um novo método em `CadastroController`
-            // ou usar o `carregarObjetos` privado, mas para ser publicamente acessível...
-
-            // ALTERNATIVA MAIS LIMPA (adicionar um método em CadastroController):
-            List<Faculdade> todasFaculdades = CadastroController.carregarTodasFaculdades(); // Precisamos criar este método
+            List<Faculdade> todasFaculdades = CadastroController.carregarTodasFaculdades();
             todasFaculdades.stream()
                     .map(Faculdade::getNome)
                     .forEach(comboFaculdades.getItems()::add);
-
-        } catch (Exception e) { // Captura qualquer exceção durante o carregamento
+        } catch (Exception e) {
             System.out.println("Erro ao carregar faculdades: " + e.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -58,8 +47,8 @@ public class TelaCadastroAluno {
         lblNome.setStyle("-fx-text-fill: #E8F1F2;" + "-fx-font-size: 14px;");
         TextField txtNome = new TextField();
         txtNome.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblEmail = new Label("Email:");
@@ -104,8 +93,16 @@ public class TelaCadastroAluno {
                         "-fx-font-size: 14px;" +
                         "-fx-background-radius: 10;"
         );
+        btnCadastrar.setPrefWidth(200);
 
-        GridPane.setHalignment(btnCadastrar, HPos.RIGHT);
+        Button btnLogin = new Button("Login");
+        btnLogin.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnLogin.setPrefWidth(200);
 
         grid.add(lblNome, 0, 0);
         grid.add(txtNome, 1, 0);
@@ -120,10 +117,15 @@ public class TelaCadastroAluno {
         grid.add(lblFaculdade, 0, 5);
         grid.add(comboFaculdades, 1, 5);
         grid.add(btnCadastrar, 1, 6);
+        grid.add(btnLogin, 1, 7);
+
+        btnLogin.setOnAction(e -> {
+            stage.close();
+            new TelaLogin("Aluno").start(new Stage());
+        });
 
         btnCadastrar.setOnAction(e -> {
             try {
-                // Validação para campos vazios
                 if (txtNome.getText().isEmpty() || txtEmail.getText().isEmpty() ||
                         txtUser.getText().isEmpty() || txtSenha.getText().isEmpty() ||
                         txtCpf.getText().isEmpty() || comboFaculdades.getValue() == null) {
@@ -165,7 +167,7 @@ public class TelaCadastroAluno {
             }
         });
 
-        Scene scene = new Scene(grid, 400, 300);
+        Scene scene = new Scene(grid, 400, 350); // Aumentei a altura para acomodar o novo botão
         stage.setScene(scene);
         stage.show();
     }
