@@ -1,9 +1,11 @@
 package models;
 
-public class Aluno extends Usuario{
+import java.io.Serializable;
+
+public class Aluno extends Usuario implements Serializable { // Adicione implements Serializable
+    private static final long serialVersionUID = 1L; // Adicione esta linha
     private long cpf;
     private String nomeFaculdade;
-
 
     public Aluno(int idUsuario, String nome, String email, String username, String senha, long cpf, String nomeFaculdade){
         super(idUsuario,nome, email, username, senha);

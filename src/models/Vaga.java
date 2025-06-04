@@ -1,6 +1,9 @@
 package models;
 
-public class Vaga extends Postagem {
+import java.io.Serializable;
+
+public class Vaga extends Postagem implements Serializable { // Adicione implements Serializable
+    private static final long serialVersionUID = 1L; // Adicione esta linha
     private String link;
 
     public Vaga(String titulo, String conteudo, String faculdadeNome, String link) {

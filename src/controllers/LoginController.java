@@ -2,50 +2,49 @@ package controllers;
 
 import models.Aluno;
 import models.Faculdade;
+import models.Usuario; // Importe Usuario para o cast
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginController {
 
+    private static final String ALUNOS_FILE = "alunos.dat";
+    private static final String FACULDADES_FILE = "faculdades.dat";
+
+    // Método auxiliar para carregar lista de objetos
+    private static <T> List<T> carregarObjetos(String filename) {
+        List<T> objetos = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            objetos = (List<T>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo " + filename + " não encontrado. Retornando lista vazia.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erro ao carregar " + filename + ": " + e.getMessage());
+        }
+        return objetos;
+    }
+
     public static Object autenticar(String tipo, String username, String senha) {
-        String arquivo = tipo.equalsIgnoreCase("Aluno") ? "alunos.txt" : "faculdades.txt";
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(arquivo))) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                String[] partes = linha.split(";");
-
-                String user = partes[3];
-                String pass = partes[4];
-
-                if (user.equals(username) && pass.equals(senha)) {
-                    if (tipo.equalsIgnoreCase("Aluno")) {
-                        return new Aluno(
-                                Integer.parseInt(partes[0]),
-                                partes[1], partes[2], user, pass,
-                                Long.parseLong(partes[5]),
-                                partes[6] // nome da faculdade
-                        );
-                    } else {
-                        return new Faculdade(
-                                Integer.parseInt(partes[0]),    // id
-                                partes[1],                      // nome
-                                partes[2],                      // email
-                                user,                           // username
-                                pass,                           // senha
-                                Long.parseLong(partes[5]),      // cnpj
-                                Long.parseLong(partes[6]),      // cep
-                                Long.parseLong(partes[7])       // telefone
-                        );
-                    }
+        if (tipo.equalsIgnoreCase("Aluno")) {
+            List<Aluno> alunos = carregarObjetos(ALUNOS_FILE);
+            for (Aluno aluno : alunos) {
+                if (aluno.getUsername().equals(username) && aluno.getSenha().equals(senha)) {
+                    return aluno;
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Erro ao autenticar: " + e.getMessage());
+        } else if (tipo.equalsIgnoreCase("Faculdade")) {
+            List<Faculdade> faculdades = carregarObjetos(FACULDADES_FILE);
+            for (Faculdade faculdade : faculdades) {
+                if (faculdade.getUsername().equals(username) && faculdade.getSenha().equals(senha)) {
+                    return faculdade;
+                }
+            }
         }
-
         return null;
     }
 }

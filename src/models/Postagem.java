@@ -1,6 +1,9 @@
 package models;
 
-public abstract class Postagem {
+import java.io.Serializable;
+
+public abstract class Postagem implements Serializable { // Adicione implements Serializable
+    private static final long serialVersionUID = 1L; // Adicione esta linha
     private String titulo;
     private String conteudo;
     private String faculdadeNome;

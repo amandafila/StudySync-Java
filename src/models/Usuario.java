@@ -1,6 +1,9 @@
 package models;
 
-public abstract class Usuario {
+import java.io.Serializable; // Adicione esta importação
+
+public abstract class Usuario implements Serializable { // Adicione implements Serializable
+    private static final long serialVersionUID = 1L; // Adicione esta linha (pode ser 1L para começar)
     private int idUsuario;
     private String nome;
     private String email;

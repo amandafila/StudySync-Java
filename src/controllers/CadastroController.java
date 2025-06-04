@@ -1,88 +1,95 @@
-//os comentários aqui são meus (Amanda), não do chatgpt. De preferência só apagar no final para td mundo saber oq está acontecendo
 package controllers;
 
 import models.Aluno;
 import models.Faculdade;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*; // Importe tudo de java.io
+import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Files; // Ainda precisamos para verificar se o arquivo existe e criar se necessário.
+import java.nio.file.Paths;
 
 public class CadastroController {
-//classe com métodos static pq pode ser chamado sem criar um objeto da classe
+
+    private static final String ALUNOS_FILE = "alunos.dat";
+    private static final String FACULDADES_FILE = "faculdades.dat";
+
+    // Método auxiliar para carregar lista de objetos
+    private static <T> List<T> carregarObjetos(String filename) {
+        List<T> objetos = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            objetos = (List<T>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo " + filename + " não encontrado. Será criado ao salvar.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erro ao carregar " + filename + ": " + e.getMessage());
+        }
+        return objetos;
+    }
+
+    // Método auxiliar para salvar lista de objetos
+    private static <T> void salvarObjetos(String filename, List<T> objetos) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(objetos);
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar " + filename + ": " + e.getMessage());
+        }
+    }
 
     public static void salvarAluno(Aluno aluno) {
-        try {
-            FileWriter writer = new FileWriter("alunos.txt", true);
-            //está criando um objeto de filewriter chamado writer que escreve no arquivo alunos.txt
-            //o true é para adicionar contúdo novo sem apagar o que já está salvo lá
-
-            writer.write(aluno.getIdUsuario() + ";" +
-                    aluno.getNome() + ";" +
-                    aluno.getEmail() + ";" +
-                    aluno.getUsername() + ";" +
-                    aluno.getSenha() + ";" +
-                    aluno.getCpf() + ";" +
-                    aluno.getNomeFaculdade() + "\n");
-            //escreve no arquivo as informações passadas e as separa com ponto e vírgula
-            writer.close();
-            //fecha o arquivo depois de escrever para salvar os dados direito
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar aluno: " + e.getMessage());
+        List<Aluno> alunos = carregarObjetos(ALUNOS_FILE);
+        boolean encontrado = false;
+        for (int i = 0; i < alunos.size(); i++) {
+            if (alunos.get(i).getIdUsuario() == aluno.getIdUsuario()) {
+                alunos.set(i, aluno); // Atualiza se já existe
+                encontrado = true;
+                break;
+            }
         }
+        if (!encontrado) {
+            alunos.add(aluno); // Adiciona se for novo
+        }
+        salvarObjetos(ALUNOS_FILE, alunos);
     }
 
     public static void salvarFaculdade(Faculdade faculdade) {
-        //mesma coisa, só que com faculdade
-        try {
-            FileWriter writer = new FileWriter("faculdades.txt", true);
-            writer.write(faculdade.getIdUsuario() + ";" +
-                    faculdade.getNome() + ";" +
-                    faculdade.getEmail() + ";" +
-                    faculdade.getUsername() + ";" +
-                    faculdade.getSenha() + ";" +
-                    faculdade.getCnpj() + ";" +
-                    faculdade.getCep() + ";" +
-                    faculdade.getTelefone() + "\n");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar faculdade: " + e.getMessage());
-        }
-    }
-    public static int gerarProximoIdAluno() {
-        int maiorId = 0;
-        try {
-            List<String> linhas = Files.readAllLines(Paths.get("alunos.txt"));
-            for (String linha : linhas) {
-                String[] partes = linha.split(";");
-                int id = Integer.parseInt(partes[0]);
-                if (id > maiorId) {
-                    maiorId = id;
-                }
+        List<Faculdade> faculdades = carregarObjetos(FACULDADES_FILE);
+        boolean encontrado = false;
+        for (int i = 0; i < faculdades.size(); i++) {
+            if (faculdades.get(i).getIdUsuario() == faculdade.getIdUsuario()) {
+                faculdades.set(i, faculdade); // Atualiza se já existe
+                encontrado = true;
+                break;
             }
-        } catch (IOException e) {
-            System.out.println("Erro ao ler arquivo de alunos: " + e.getMessage());
+        }
+        if (!encontrado) {
+            faculdades.add(faculdade); // Adiciona se for nova
+        }
+        salvarObjetos(FACULDADES_FILE, faculdades);
+    }
+
+    public static int gerarProximoIdAluno() {
+        List<Aluno> alunos = carregarObjetos(ALUNOS_FILE);
+        int maiorId = 0;
+        for (Aluno aluno : alunos) {
+            if (aluno.getIdUsuario() > maiorId) {
+                maiorId = aluno.getIdUsuario();
+            }
         }
         return maiorId + 1;
     }
 
     public static int gerarProximoIdFaculdade() {
+        List<Faculdade> faculdades = carregarObjetos(FACULDADES_FILE);
         int maiorId = 0;
-        try {
-            List<String> linhas = Files.readAllLines(Paths.get("faculdades.txt"));
-            for (String linha : linhas) {
-                String[] partes = linha.split(";");
-                int id = Integer.parseInt(partes[0]);
-                if (id > maiorId) {
-                    maiorId = id;
-                }
+        for (Faculdade faculdade : faculdades) {
+            if (faculdade.getIdUsuario() > maiorId) {
+                maiorId = faculdade.getIdUsuario();
             }
-        } catch (IOException e) {
-            System.out.println("Erro ao ler arquivo de alunos: " + e.getMessage());
         }
         return maiorId + 1;
     }
-
+    public static List<Faculdade> carregarTodasFaculdades() {
+        return carregarObjetos(FACULDADES_FILE);
+    }
 }
