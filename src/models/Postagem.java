@@ -11,6 +11,7 @@ public abstract class Postagem {
         this.faculdadeNome = faculdadeNome;
     }
 
+    // Getters
     public String getTitulo() {
         return titulo;
     }
@@ -23,5 +24,14 @@ public abstract class Postagem {
         return faculdadeNome;
     }
 
-    public abstract String getTipo(); // "Publicação" ou "Vaga"
+    // Setters (novos)
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public abstract String getTipo();
 }

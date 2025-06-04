@@ -1,6 +1,2 @@
-0;calo;carlos@gmmail;carlos;12345;12345;PUCPR
+0;oi;carlos@gmail;carlos;12345;12345;PUCPR
 2;Arthur;arthur@gmail;arthur;12345;12345;Tuiuti
-3;kalilizaoo;kalil@gmail;kalilkk;1;11;null
-4;calo;12;calor;11;1;PUCPR
-5;Carlos;carlos@gmail.com;carlos;123456;1234567;PUCPR
-6;Carlos;carlos@gmail.com;cailos;123;11111111111111;Tuiuti
