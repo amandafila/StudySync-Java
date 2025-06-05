@@ -21,6 +21,13 @@ public class TelaCadastroAluno {
 
         ComboBox<String> comboFaculdades = new ComboBox<>();
         comboFaculdades.setPromptText("Selecione a faculdade");
+        comboFaculdades.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        comboFaculdades.setPrefWidth(200);
 
         try {
             List<Faculdade> todasFaculdades = CadastroController.carregarTodasFaculdades();

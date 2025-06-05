@@ -11,6 +11,7 @@ import models.Faculdade;
 
 public class TelaLogin {
 
+
     private final String tipoUsuario;
 
     public TelaLogin(String tipoUsuario) {

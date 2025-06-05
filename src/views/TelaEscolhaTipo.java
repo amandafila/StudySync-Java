@@ -74,6 +74,7 @@ public class TelaEscolhaTipo extends Application {
         //mostra a janela pro usuário
     }
 
+
     public static void main(String[] args) {
         launch(args);
         //inicia o JavaFX e chama o metodo start

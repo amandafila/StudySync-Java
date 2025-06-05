@@ -29,11 +29,50 @@ public class TelaPrincipalAluno {
                 "-fx-font-size: 14px;");
 
         Button btnVerVagas = new Button("Ver Vagas Disponíveis");
+        btnVerVagas.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnVerVagas.setPrefWidth(200);
         Button btnVerPublicacoes = new Button("Ver Publicações");
+        btnVerPublicacoes.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnVerPublicacoes.setPrefWidth(200);
+
         Button btnEditar = new Button("Editar Informações");
+        btnEditar.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnEditar.setPrefWidth(200);
+
         Button btnMudarSenha = new Button("Mudar Senha");
-        Button btnDeletar = new Button("Deletar-me"); // Novo botão
+        btnMudarSenha.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnMudarSenha.setPrefWidth(200);
+
+        Button btnDeletar = new Button("Deletar-me");
+        btnDeletar.setPrefWidth(200);// Novo botão
         Button btnSair = new Button("Sair");
+        btnSair.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnSair.setPrefWidth(200);
 
         // Configuração do botão Deletar-me
         btnDeletar.setStyle("-fx-background-color: #ff4444; -fx-text-fill: white;");

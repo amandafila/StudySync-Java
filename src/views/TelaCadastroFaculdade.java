@@ -13,6 +13,7 @@ import models.Faculdade;
 
 public class TelaCadastroFaculdade {
 
+
     public void start(Stage stage) {
         stage.setTitle("Cadastro de Faculdade");
 

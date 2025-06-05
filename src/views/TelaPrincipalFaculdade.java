@@ -3,6 +3,7 @@ package views;
 import controllers.FaculdadeController;
 import controllers.AlunoController;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -28,14 +29,65 @@ public class TelaPrincipalFaculdade {
                         "CNPJ: " + faculdade.getCnpj() + "\n" +
                         "CEP: " + faculdade.getCep()
         );
+        lblInfo.setStyle("-fx-text-fill: #E8F1F2;" +
+                "-fx-font-size: 14px;");
 
         Button btnPostar = new Button("Fazer Postagem");
+        btnPostar.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnPostar.setPrefWidth(200);
+
         Button btnVerAlunos = new Button("Visualizar Alunos");
+        btnVerAlunos.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnVerAlunos.setPrefWidth(200);
+
         Button btnVerPublicacoes = new Button("Visualizar Publicações");
+        btnVerPublicacoes.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnVerPublicacoes.setPrefWidth(200);
+
         Button btnEditar = new Button("Editar Informações");
+        btnEditar.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnEditar.setPrefWidth(200);
+
         Button btnMudarSenha = new Button("Mudar Senha");
+        btnMudarSenha.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnMudarSenha.setPrefWidth(200);
+
         Button btnDeletarFaculdade = new Button("Deletar Faculdade");
+        btnDeletarFaculdade.setPrefWidth(200);
+
         Button btnSair = new Button("Sair");
+        btnSair.setStyle(
+                "-fx-background-color: #006494;" +
+                        "-fx-text-fill: #E8F1F2;" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 10;"
+        );
+        btnSair.setPrefWidth(200);
 
         // Configuração do botão Deletar Faculdade
         btnDeletarFaculdade.setStyle("-fx-background-color: #ff4444; -fx-text-fill: white;");
@@ -191,6 +243,8 @@ public class TelaPrincipalFaculdade {
         layout.setPadding(new Insets(20));
         layout.getChildren().addAll(lblInfo, btnPostar, btnVerAlunos, btnVerPublicacoes,
                 btnEditar, btnMudarSenha, btnDeletarFaculdade, btnSair);
+        layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #13293D;");
 
         Scene scene = new Scene(layout, 500, 500);
         stage.setScene(scene);
