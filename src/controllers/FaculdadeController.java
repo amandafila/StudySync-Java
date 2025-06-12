@@ -41,7 +41,7 @@ public class FaculdadeController {
             throw new IllegalArgumentException("Faculdade não pode ser nula");
         }
         faculdades.removeIf(f -> f.getCnpj() == faculdade.getCnpj());
-        salvarFaculdades(); // Salva as alterações no arquivo
+        salvarFaculdades();
     }
 
     public static void atualizarFaculdade(Faculdade faculdadeAtualizada) {
@@ -55,7 +55,6 @@ public class FaculdadeController {
                 f.setEmail(faculdadeAtualizada.getEmail());
                 f.setUsername(faculdadeAtualizada.getUsername());
                 f.setSenha(faculdadeAtualizada.getSenha());
-                // Atualize outros campos conforme necessário
                 salvarFaculdades();
                 return;
             }
@@ -64,5 +63,4 @@ public class FaculdadeController {
         throw new IllegalArgumentException("Faculdade não encontrada para atualização");
     }
 
-    // Restante dos métodos permanece o mesmo
 }

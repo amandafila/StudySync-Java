@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.Aluno;
 import models.Postagem;
+
 import java.awt.Desktop;
 import java.net.URI;
 import java.util.List;
@@ -45,9 +46,7 @@ public class TelaVisualizarVagasAluno {
             Label lblTitulo = new Label(vaga.getTitulo());
             lblTitulo.setStyle("-fx-font-size: 16; -fx-font-weight: bold;");
 
-            // **Extrai a URL de forma mais robusta**
-            String conteudo = vaga.getConteudo();
-            String url = extrairUrl(conteudo); // Método dedicado para extração
+            final String url = (vaga instanceof models.Vaga) ? ((models.Vaga) vaga).getLink() : null;
 
             Hyperlink link = new Hyperlink();
             if (url != null && (url.startsWith("http://") || url.startsWith("https://"))) {
@@ -79,23 +78,6 @@ public class TelaVisualizarVagasAluno {
         stage.show();
     }
 
-    // **Método para extrair URL de forma robusta**
-    private String extrairUrl(String conteudo) {
-        if (conteudo == null || conteudo.isEmpty()) return null;
-
-        // Tenta encontrar a última ocorrência de "http://" ou "https://"
-        int httpIndex = conteudo.lastIndexOf("http://");
-        int httpsIndex = conteudo.lastIndexOf("https://");
-        int startIndex = Math.max(httpIndex, httpsIndex);
-
-        if (startIndex == -1) return null; // Nenhum link encontrado
-
-        // Pega tudo a partir do início do link até o final ou até um espaço
-        String url = conteudo.substring(startIndex).split("\\s")[0];
-        return url.trim();
-    }
-
-    // **Método para abrir navegador com tratamento de erro**
     private void abrirNavegador(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));

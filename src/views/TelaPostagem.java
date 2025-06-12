@@ -55,7 +55,6 @@ public class TelaPostagem {
         Button btnPostar = new Button("Postar");
         Button btnVoltar = new Button("Voltar");
 
-        // Posicionamento no grid
         grid.add(lblTipo, 0, 0);
         grid.add(comboTipo, 1, 0);
         grid.add(lblTitulo, 0, 1);
@@ -67,7 +66,6 @@ public class TelaPostagem {
         grid.add(btnPostar, 1, 4);
         grid.add(btnVoltar, 1, 5);
 
-        // Ação do botão "Postar"
         btnPostar.setOnAction(e -> {
             String tipo = comboTipo.getValue();
             String titulo = txtTitulo.getText();
@@ -105,7 +103,6 @@ public class TelaPostagem {
             new TelaPrincipalFaculdade(faculdade).start(new Stage());
         });
 
-        // Ação do botão "Voltar"
         btnVoltar.setOnAction(e -> {
             stage.close();
             new TelaPrincipalFaculdade(faculdade).start(new Stage());

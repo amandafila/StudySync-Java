@@ -2,8 +2,8 @@ package models;
 
 import java.io.Serializable;
 
-public abstract class Postagem implements Serializable { // Adicione implements Serializable
-    private static final long serialVersionUID = 1L; // Adicione esta linha
+public abstract class Postagem implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private String conteudo;
     private String faculdadeNome;
@@ -14,7 +14,6 @@ public abstract class Postagem implements Serializable { // Adicione implements 
         this.faculdadeNome = faculdadeNome;
     }
 
-    // Getters
     public String getTitulo() {
         return titulo;
     }
@@ -27,7 +26,6 @@ public abstract class Postagem implements Serializable { // Adicione implements 
         return faculdadeNome;
     }
 
-    // Setters (novos)
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

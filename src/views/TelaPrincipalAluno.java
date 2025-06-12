@@ -84,16 +84,12 @@ public class TelaPrincipalAluno {
 
             confirmacao.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    // Remove o aluno do sistema
                     AlunoController.removerAluno(aluno);
 
-                    // Fecha a janela atual
                     stage.close();
 
-                    // Volta para a tela de login
                     new TelaLogin("Aluno").start(new Stage());
 
-                    // Mostra mensagem de sucesso
                     Alert sucesso = new Alert(Alert.AlertType.INFORMATION);
                     sucesso.setTitle("Conta Deletada");
                     sucesso.setHeaderText(null);
@@ -218,7 +214,7 @@ public class TelaPrincipalAluno {
 
         btnSair.setOnAction(e -> {
             stage.close();
-            new TelaLogin("Aluno").start(new Stage());
+            new TelaEscolhaTipo().start(new Stage());
         });
 
         VBox layout = new VBox(10);
@@ -226,7 +222,7 @@ public class TelaPrincipalAluno {
         layout.getChildren().addAll(lblInfo, btnVerVagas, btnVerPublicacoes, btnEditar, btnMudarSenha, btnDeletar, btnSair);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #13293D;");
-        Scene scene = new Scene(layout, 400, 400); // Aumentei a altura para acomodar o novo botão
+        Scene scene = new Scene(layout, 400, 400);
         stage.setScene(scene);
         stage.show();
     }

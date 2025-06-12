@@ -50,7 +50,7 @@ public class TelaPrincipalFaculdade {
         );
         btnVerAlunos.setPrefWidth(200);
 
-        Button btnVerPublicacoes = new Button("Visualizar Publicações");
+        Button btnVerPublicacoes = new Button("Visualizar Postagem");
         btnVerPublicacoes.setStyle(
                 "-fx-background-color: #006494;" +
                         "-fx-text-fill: #E8F1F2;" +
@@ -89,7 +89,6 @@ public class TelaPrincipalFaculdade {
         );
         btnSair.setPrefWidth(200);
 
-        // Configuração do botão Deletar Faculdade
         btnDeletarFaculdade.setStyle("-fx-background-color: #ff4444; -fx-text-fill: white;");
         btnDeletarFaculdade.setOnAction(e -> {
             Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
@@ -113,7 +112,6 @@ public class TelaPrincipalFaculdade {
             });
         });
 
-        // Botão Editar Informações
         btnEditar.setOnAction(e -> {
             Dialog<Faculdade> dialog = new Dialog<>();
             dialog.setTitle("Editar Informações");
@@ -164,7 +162,6 @@ public class TelaPrincipalFaculdade {
             });
         });
 
-        // Botão Mudar Senha
         btnMudarSenha.setOnAction(e -> {
             Dialog<Boolean> dialog = new Dialog<>();
             dialog.setTitle("Mudar Senha");

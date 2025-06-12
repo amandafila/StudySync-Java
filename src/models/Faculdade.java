@@ -2,8 +2,8 @@ package models;
 
 import java.io.Serializable;
 
-public class Faculdade extends Usuario implements Serializable { // Adicione implements Serializable
-    private static final long serialVersionUID = 1L; // Adicione esta linha
+public class Faculdade extends Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long cnpj;
     private long cep;
     private long telefone;

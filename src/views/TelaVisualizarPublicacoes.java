@@ -27,11 +27,9 @@ public class TelaVisualizarPublicacoes {
     public void start(Stage stage) {
         stage.setTitle("Publicações da " + faculdade.getNome());
 
-        // Configuração da tabela
         tabela = new TableView<>();
         tabela.setEditable(true);
 
-        // Carrega as postagens
         ObservableList<Postagem> postagens = FXCollections.observableArrayList(
                 PostagemController.carregarPostagens()
                         .stream()
@@ -39,11 +37,9 @@ public class TelaVisualizarPublicacoes {
                         .collect(Collectors.toList())
         );
 
-        // Coluna Tipo (não editável)
         TableColumn<Postagem, String> colTipo = new TableColumn<>("Tipo");
         colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 
-        // Coluna Título (editável)
         TableColumn<Postagem, String> colTitulo = new TableColumn<>("Título");
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colTitulo.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -53,7 +49,6 @@ public class TelaVisualizarPublicacoes {
             PostagemController.atualizarPostagem(postagem);
         });
 
-        // Coluna Conteúdo (editável)
         TableColumn<Postagem, String> colConteudo = new TableColumn<>("Conteúdo");
         colConteudo.setCellValueFactory(new PropertyValueFactory<>("conteudo"));
         colConteudo.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -66,7 +61,6 @@ public class TelaVisualizarPublicacoes {
         tabela.getColumns().addAll(colTipo, colTitulo, colConteudo);
         tabela.setItems(postagens);
 
-        // Botões
         Button btnExcluir = new Button("Excluir Postagem");
         btnExcluir.setOnAction(e -> {
             Postagem selecionada = tabela.getSelectionModel().getSelectedItem();
@@ -86,7 +80,6 @@ public class TelaVisualizarPublicacoes {
             new TelaPrincipalFaculdade(faculdade).start(new Stage());
         });
 
-        // Layout
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
         layout.getChildren().addAll(tabela, btnExcluir, btnVoltar);

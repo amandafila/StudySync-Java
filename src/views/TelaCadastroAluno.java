@@ -104,27 +104,27 @@ public class TelaCadastroAluno {
 
         Button btnLogin = new Button("Login");
         btnLogin.setStyle(
-                "-fx-background-color: #006494;" +
+                "-fx-background-color: #041024;" +
                         "-fx-text-fill: #E8F1F2;" +
                         "-fx-font-size: 14px;" +
                         "-fx-background-radius: 10;"
         );
         btnLogin.setPrefWidth(200);
 
-        grid.add(lblNome, 0, 0);
-        grid.add(txtNome, 1, 0);
-        grid.add(lblEmail, 0, 1);
-        grid.add(txtEmail, 1, 1);
-        grid.add(lblUser, 0, 2);
-        grid.add(txtUser, 1, 2);
-        grid.add(lblSenha, 0, 3);
-        grid.add(txtSenha, 1, 3);
-        grid.add(lblCpf, 0, 4);
-        grid.add(txtCpf, 1, 4);
-        grid.add(lblFaculdade, 0, 5);
-        grid.add(comboFaculdades, 1, 5);
-        grid.add(btnCadastrar, 1, 6);
-        grid.add(btnLogin, 1, 7);
+        grid.add(lblNome, 0, 1);
+        grid.add(txtNome, 1, 1);
+        grid.add(lblEmail, 0, 2);
+        grid.add(txtEmail, 1, 2);
+        grid.add(lblUser, 0, 3);
+        grid.add(txtUser, 1, 3);
+        grid.add(lblSenha, 0, 4);
+        grid.add(txtSenha, 1, 4);
+        grid.add(lblCpf, 0, 5);
+        grid.add(txtCpf, 1, 5);
+        grid.add(lblFaculdade, 0, 6);
+        grid.add(comboFaculdades, 1, 6);
+        grid.add(btnCadastrar, 1, 7);
+        grid.add(btnLogin, 1, 0);
 
         btnLogin.setOnAction(e -> {
             stage.close();
@@ -174,7 +174,7 @@ public class TelaCadastroAluno {
             }
         });
 
-        Scene scene = new Scene(grid, 400, 350); // Aumentei a altura para acomodar o novo botão
+        Scene scene = new Scene(grid, 400, 350);
         stage.setScene(scene);
         stage.show();
     }

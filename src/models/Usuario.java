@@ -1,9 +1,9 @@
 package models;
 
-import java.io.Serializable; // Adicione esta importação
+import java.io.Serializable;
 
-public abstract class Usuario implements Serializable { // Adicione implements Serializable
-    private static final long serialVersionUID = 1L; // Adicione esta linha (pode ser 1L para começar)
+public abstract class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int idUsuario;
     private String nome;
     private String email;

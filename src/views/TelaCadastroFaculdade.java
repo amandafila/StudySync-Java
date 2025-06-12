@@ -1,6 +1,5 @@
 package views;
 
-//mesma coisa de aluno
 
 import controllers.CadastroController;
 import javafx.geometry.Insets;
@@ -29,8 +28,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         TextField txtNome = new TextField();
         txtNome.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblEmail = new Label("Email:");
@@ -38,8 +37,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         TextField txtEmail = new TextField();
         txtEmail.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblUser = new Label("Username:");
@@ -47,8 +46,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         TextField txtUser = new TextField();
         txtUser.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblSenha = new Label("Senha:");
@@ -56,8 +55,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         PasswordField txtSenha = new PasswordField();
         txtSenha.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblCnpj = new Label("CNPJ:");
@@ -65,8 +64,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         TextField txtCnpj = new TextField();
         txtCnpj.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblCep = new Label("CEP:");
@@ -74,8 +73,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         TextField txtCep = new TextField();
         txtCep.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Label lblTelefone = new Label("Telefone:");
@@ -83,8 +82,8 @@ public class TelaCadastroFaculdade {
                 "-fx-font-size: 14px;");
         TextField txtTelefone = new TextField();
         txtTelefone.setStyle(
-                "-fx-text-fill: white;" +               // cor da letra
-                        "-fx-background-color: #006494;"        // cor de fundo
+                "-fx-text-fill: white;" +
+                        "-fx-background-color: #006494;"
         );
 
         Button btnCadastrar = new Button("Cadastrar");
@@ -97,7 +96,7 @@ public class TelaCadastroFaculdade {
         btnCadastrar.setPrefWidth(200);
 
         Button btnLogin = new Button("Login");
-        btnLogin.setStyle("-fx-background-color: #006494;" +
+        btnLogin.setStyle("-fx-background-color: #041024;" +
                 "-fx-text-fill: #E8F1F2;" +
                 "-fx-font-size: 14px;" +
                 "-fx-background-radius: 10;"
@@ -106,29 +105,29 @@ public class TelaCadastroFaculdade {
         btnLogin.setPrefWidth(200);
 
 
-        grid.add(lblNome, 0, 0);
-        grid.add(txtNome, 1, 0);
+        grid.add(lblNome, 0, 1);
+        grid.add(txtNome, 1, 1);
 
-        grid.add(lblEmail, 0, 1);
-        grid.add(txtEmail, 1, 1);
+        grid.add(lblEmail, 0, 2);
+        grid.add(txtEmail, 1, 2);
 
-        grid.add(lblUser, 0, 2);
-        grid.add(txtUser, 1, 2);
+        grid.add(lblUser, 0, 3);
+        grid.add(txtUser, 1, 3);
 
-        grid.add(lblSenha, 0, 3);
-        grid.add(txtSenha, 1, 3);
+        grid.add(lblSenha, 0, 4);
+        grid.add(txtSenha, 1, 4);
 
-        grid.add(lblCnpj, 0, 4);
-        grid.add(txtCnpj, 1, 4);
+        grid.add(lblCnpj, 0, 5);
+        grid.add(txtCnpj, 1, 5);
 
-        grid.add(lblCep, 0, 5);
-        grid.add(txtCep, 1, 5);
+        grid.add(lblCep, 0, 6);
+        grid.add(txtCep, 1, 6);
 
-        grid.add(lblTelefone, 0, 6);
-        grid.add(txtTelefone, 1, 6);
+        grid.add(lblTelefone, 0, 7);
+        grid.add(txtTelefone, 1, 7);
 
-        grid.add(btnCadastrar, 1, 7);
-        grid.add(btnLogin, 1, 8);
+        grid.add(btnCadastrar, 1, 8);
+        grid.add(btnLogin, 1, 0);
 
         btnLogin.setOnAction(e -> {
             stage.close();
@@ -140,7 +139,7 @@ public class TelaCadastroFaculdade {
             try {
                 int novoId = CadastroController.gerarProximoIdFaculdade();
                 Faculdade faculdade = new Faculdade(
-                        novoId, // id temporário
+                        novoId,
                         txtNome.getText(),
                         txtEmail.getText(),
                         txtUser.getText(),

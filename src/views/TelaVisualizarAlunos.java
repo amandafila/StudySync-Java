@@ -26,11 +26,9 @@ public class TelaVisualizarAlunos {
     public void start(Stage stage) {
         stage.setTitle("Alunos da " + faculdade.getNome());
 
-        // Tabela de alunos (editável)
         TableView<Aluno> tabela = new TableView<>();
-        tabela.setEditable(true); // Permite edição
+        tabela.setEditable(true);
 
-        // Carrega alunos filtrados por faculdade
         ObservableList<Aluno> alunos = FXCollections.observableArrayList(
                 AlunoController.carregarAlunos()
                         .stream()
@@ -38,14 +36,13 @@ public class TelaVisualizarAlunos {
                         .collect(Collectors.toList())
         );
 
-        // Colunas da tabela
         TableColumn<Aluno, String> colNome = new TableColumn<>("Nome");
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colNome.setCellFactory(TextFieldTableCell.forTableColumn()); // Torna editável
         colNome.setOnEditCommit(e -> {
             Aluno aluno = e.getRowValue();
-            aluno.setNome(e.getNewValue()); // Atualiza o objeto
-            AlunoController.atualizarAluno(aluno); // Salva no arquivo
+            aluno.setNome(e.getNewValue());
+            AlunoController.atualizarAluno(aluno);
         });
 
         TableColumn<Aluno, String> colEmail = new TableColumn<>("Email");
@@ -62,18 +59,17 @@ public class TelaVisualizarAlunos {
 
         TableColumn<Aluno, String> colUser = new TableColumn<>("Usuário");
         colUser.setCellValueFactory(new PropertyValueFactory<>("username"));
-        colUser.setCellFactory(TextFieldTableCell.forTableColumn()); // Torna editável
+        colUser.setCellFactory(TextFieldTableCell.forTableColumn());
         colUser.setOnEditCommit(e -> {
             Aluno aluno = e.getRowValue();
-            aluno.setUsername(e.getNewValue()); // Atualiza o objeto
-            AlunoController.atualizarAluno(aluno); // Salva no arquivo
+            aluno.setUsername(e.getNewValue());
+            AlunoController.atualizarAluno(aluno);
         });
 
 
         tabela.getColumns().addAll(colNome, colEmail, colCpf, colUser);
         tabela.setItems(alunos);
 
-        // Botões
         Button btnExcluir = new Button("Excluir Aluno");
         btnExcluir.setOnAction(e -> {
             Aluno selecionado = tabela.getSelectionModel().getSelectedItem();

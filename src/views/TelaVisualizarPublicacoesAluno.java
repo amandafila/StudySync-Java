@@ -23,11 +23,9 @@ public class TelaVisualizarPublicacoesAluno {
     public void start(Stage stage) {
         stage.setTitle("Publicações - " + aluno.getNomeFaculdade());
 
-        // Cabeçalho
         Label lblHeader = new Label("📚 Publicações da faculdade: " + aluno.getNomeFaculdade());
         lblHeader.setStyle("-fx-font-weight: bold; -fx-font-size: 18; -fx-padding: 0 0 10 0;");
 
-        // Área das publicações
         VBox postagensBox = new VBox(15); // Espaço entre publicações
         postagensBox.setPadding(new Insets(10));
 
@@ -54,11 +52,9 @@ public class TelaVisualizarPublicacoesAluno {
             postagensBox.getChildren().add(card);
         }
 
-        // Scroll
         ScrollPane scrollPane = new ScrollPane(postagensBox);
         scrollPane.setFitToWidth(true);
 
-        // Botão Voltar
         Button btnVoltar = new Button("Voltar");
         btnVoltar.setOnAction(e -> {
             stage.close();
